@@ -6,12 +6,12 @@ public class money : MonoBehaviour {
 
 	public static int moneyValue; 
 
-	Text moneyText;
+	public Text moneyText;
+
 
 	void Update (){
-		moneyText = GetComponent<Text> (); 
-
-		moneyText = moneyValue.ToString();
+		moneyValue = 100;
+		moneyText.text = moneyValue.ToString();
 
 	}
 }
