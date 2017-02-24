@@ -6,7 +6,7 @@ TO DO:
 
 -workforce system
 
--globe movement + interaction
+-globe interaction
 
 -factory placement
 
