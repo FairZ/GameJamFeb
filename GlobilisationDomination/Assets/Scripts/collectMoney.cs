@@ -11,6 +11,8 @@ public class collectMoney : MonoBehaviour {
 		
 		countryController = transform.parent.parent.gameObject.GetComponent<CountryController>();
 		Debug.Log (countryController.FactoryLevel);
+
+
 	}
 
 
