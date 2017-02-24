@@ -5,6 +5,10 @@ public class WorldControl : MonoBehaviour {
 
 	private Vector3 PreviousMousePos;
 	private Vector3 MouseMovement;
+	private Vector3 PreviousPos;
+	private Vector3 PreviousRot;
+
+	public GameObject World;
 
 	void Update () {
 		if (Input.GetMouseButtonDown (0)) {
@@ -12,7 +16,14 @@ public class WorldControl : MonoBehaviour {
 		}
 		if (Input.GetMouseButton (0)) {
 			MouseMovement = PreviousMousePos - Input.mousePosition;
-			transform.Rotate (-MouseMovement.y/10,MouseMovement.x/10, 0, Space.World);
+			World.transform.Rotate (0, MouseMovement.x/10, 0);
+			PreviousPos = transform.position;
+			PreviousRot = transform.eulerAngles;
+			transform.RotateAround (Vector3.zero, Vector3.right, MouseMovement.y/10);
+			if ((transform.eulerAngles.x > 45)&&(transform.eulerAngles.x < 315)) {
+				transform.position = PreviousPos;
+				transform.eulerAngles = PreviousRot;
+			}
 			PreviousMousePos = Input.mousePosition;
 		}
 	}
