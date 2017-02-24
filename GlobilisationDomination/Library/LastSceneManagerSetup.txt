@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Blank Level.unity
+- path: Assets/Scenes/Blank Level.unity
   isLoaded: 1
   isActive: 1
