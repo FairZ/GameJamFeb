@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class money : MonoBehaviour {
 
-	public float moneyValue = 0.0f; 
+	public static float moneyValue = 0.0f; 
 
 	public Text moneyText;
 
