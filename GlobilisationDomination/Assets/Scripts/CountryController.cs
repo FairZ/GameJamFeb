@@ -58,7 +58,15 @@ public class CountryController : MonoBehaviour {
 		else if (selectedCountry.name == "asiaPoly")
 			selectedCountryText.text = ("Region: Asia");
 		else if (selectedCountry.name == "australiaPoly")
-			selectedCountryText = ("Region: Australia");
+			selectedCountryText.text = ("Region: Australia");
+		else if (selectedCountry.name == "europePoly")
+			selectedCountryText.text = ("Region: Europe");
+		else if (selectedCountry.name == "nAmericaPoly")
+			selectedCountryText.text = ("Region: North America");
+		else if (selectedCountry.name == "sAmericaPoly")
+			selectedCountryText.text = ("Region: South America");
+		else if (selectedCountry.name == "ukPoly")
+			selectedCountryText.text = ("Region: United Kingdom");
 		
 	}
 
