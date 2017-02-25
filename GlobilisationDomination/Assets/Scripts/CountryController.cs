@@ -13,6 +13,8 @@ public class CountryController : MonoBehaviour {
 	public int FactoryCost; 
 	public int FactoryUpgradecost; 
 
+	public float cMultiplyer = 1f;
+
 	public static GameObject startingCountry;
 	public static GameObject selectedCountry;
 
@@ -21,7 +23,7 @@ public class CountryController : MonoBehaviour {
 	private Button FactoryLimitUpgrade;
 
 	public GameObject factoryPrefab;
-	private List<GameObject> factoryList;
+	private List<GameObject> factoryList = new List<GameObject>();
 
 	public bool isAddingFactory = false;
 
@@ -35,6 +37,15 @@ public class CountryController : MonoBehaviour {
 		Button FactoryLimitUpgrade = GameObject.Find ("upgradeButton").GetComponent<Button>();
 		FactoryLimitUpgrade.onClick.AddListener (UpgradeFactoryLimitInCountry);
 		CountryFactoryLimitText.text = ("Factory Limit: " + FactoryLimit.ToString ());
+	}
+
+	void Update()
+	{
+		foreach (GameObject f in factoryList)
+		{
+			f.GetComponent<Factory> ().UpdateFactory (cMultiplyer, ManagingDirector);
+		}
+
 	}
 
 	void FixedUpdate()
@@ -86,15 +97,20 @@ public class CountryController : MonoBehaviour {
 		Vector3 dir = (pRef.transform.position + _loc).normalized;
 		GameObject fRef = Instantiate (factoryPrefab, _loc + (dir * 10.0f), new Quaternion ()) as GameObject;
 
+		fRef.transform.localScale *= 0.25f;
+		fRef.transform.up = dir;
+
 		RaycastHit hit;
 		if(fRef.GetComponent<Rigidbody>().SweepTest(-dir, out hit))
 		{
 			if(hit.collider.gameObject == selectedCountry)
 			{
 				fRef.transform.position = hit.point;
-				fRef.transform.up = dir;
-				fRef.transform.parent = pRef.transform;
+
+				fRef.transform.parent = selectedCountry.transform;
 				SwitchAddingState ();
+
+				factoryList.Add (fRef);
 
 				money.moneyValue -= selectedCountry.GetComponent<CountryController> ().FactoryCost;
 			}

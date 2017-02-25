@@ -7,32 +7,26 @@ public class collectMoney : MonoBehaviour {
 
 	private bool isRising = true;
 
-	private Material[] matRefs;
-
 	//Relative to the factory
-	private const float heightLimit = 10f;
-	private Vector3 startPos;
+	private const float heightLimit = 1f / 9.5f;
+
+	public GameObject parentFactory;
 
 	private const float timeoutMax = 10.0f;
 	private float timeout = timeoutMax;
 
-	void Start()
-	{
-		startPos = this.transform.position;
-		matRefs = this.GetComponents<Material> ();
-	}
 
-	void Update()
+	void FixedUpdate()
 	{
 		if (isRising)
 		{
-			if (Vector3.Distance (this.transform.position, startPos) > heightLimit) 
+			if (Vector3.Distance (this.transform.localPosition, parentFactory.transform.localPosition) > heightLimit) 
 			{
 				isRising = false;
 			}
 			else 
 			{
-				//Move it by delta time
+				this.transform.Translate ((Vector3.up/2) * Time.deltaTime);
 			}
 		}
 		else
@@ -45,9 +39,7 @@ public class collectMoney : MonoBehaviour {
 			}
 
 		}
-
-		this.transform.Translate (this.transform.up * Time.deltaTime);
-
+			
 	}
 
 	public void Collect()
