@@ -4,28 +4,32 @@ using UnityEngine.UI;
 
 public class CountryController : MonoBehaviour {
 
-	public int TotalWorkforce;
-	public int UsedWorkforce;
-	public int AvailableWorkForce;
-	public int HousingLevel;
+	public int FactoryLimit;
 	public int NoOfFactories;
-	public int FactoryLevel; 
 	public int SanctionPercentage;
 	public bool ManagingDirector;
 
 
 	private GameObject selectedCountry;
-	public Text selectedCountryText; 
-	private Button upgradeButton;
+	public Text selectedCountryText;
+	public Text CountryFactoryLimitText;
+	private Button FactoryLimitUpgrade;
 
 	void Start()
 	{
-		FactoryLevel = 1;
-		Button upgradeButton = GameObject.Find ("upgradeButton").GetComponent<Button>();
-		upgradeButton.onClick.AddListener (UpgradeFactoriesInCountry);
+		//will need changing to balance
+		FactoryLimit = 1;
+
+		Button FactoryLimitUpgrade = GameObject.Find ("upgradeButton").GetComponent<Button>();
+		FactoryLimitUpgrade.onClick.AddListener (UpgradeFactoryLimitInCountry);
+		CountryFactoryLimitText.text = ("Factory Limit: " + FactoryLimit.ToString ());
 	}
 
 	void FixedUpdate(){
+		
+
+
+
 		if (Input.GetMouseButtonDown(0))
 		{
 			RaycastHit hit; 
@@ -36,7 +40,7 @@ public class CountryController : MonoBehaviour {
 				if (hit.collider.tag == ("country"))
 				{
 					selectedCountry = hit.collider.gameObject; 
-					selectedCountryText.text = selectedCountry.name.ToString();
+					selectedCountryText.text = ("Selected Country: " + selectedCountry.name.ToString());
 					//Debug.Log (selectedCountry.name);
 				}
 			}
@@ -44,11 +48,13 @@ public class CountryController : MonoBehaviour {
 
 	}
 
-	void UpgradeFactoriesInCountry()
+	void UpgradeFactoryLimitInCountry()
 	{
 		if (this.gameObject == selectedCountry)
 		{
-			this.FactoryLevel++;
+			this.FactoryLimit++;
+
+			CountryFactoryLimitText.text = ("Factory Limit: " + FactoryLimit.ToString ());
 		}
 	}
 
