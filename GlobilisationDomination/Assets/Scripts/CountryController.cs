@@ -10,6 +10,8 @@ public class CountryController : MonoBehaviour {
 	public int NoOfFactories;
 	public int SanctionPercentage;
 	public bool ManagingDirector;
+	public int FactoryCost; 
+	public int FactoryUpgradecost; 
 
 	public static GameObject startingCountry;
 	public static GameObject selectedCountry;

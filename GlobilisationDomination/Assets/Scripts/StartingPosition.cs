@@ -72,6 +72,7 @@ public class StartingPosition : MonoBehaviour {
 		if (currentSelection != 0)
 		{
 			startingPositionPanel.gameObject.SetActive (false);
+			money.moneyValue = 10000;
 
 			switch (currentSelection)
 			{
