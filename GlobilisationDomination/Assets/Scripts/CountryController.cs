@@ -10,7 +10,7 @@ public class CountryController : MonoBehaviour {
 	public bool ManagingDirector;
 
 
-	private GameObject selectedCountry;
+	public static GameObject selectedCountry;
 	public Text selectedCountryText;
 	public Text CountryFactoryLimitText;
 	private Button FactoryLimitUpgrade;
@@ -23,34 +23,6 @@ public class CountryController : MonoBehaviour {
 		Button FactoryLimitUpgrade = GameObject.Find ("upgradeButton").GetComponent<Button>();
 		FactoryLimitUpgrade.onClick.AddListener (UpgradeFactoryLimitInCountry);
 		CountryFactoryLimitText.text = ("Factory Limit: " + FactoryLimit.ToString ());
-	}
-
-	void FixedUpdate(){
-		
-
-
-
-		if (Input.GetMouseButtonDown(0))
-		{
-			RaycastHit hit; 
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-
-			if (Physics.Raycast(ray, out hit, 10000.0f))
-			{
-				if (hit.collider.tag == ("country"))
-				{
-					selectedCountry = hit.collider.gameObject; 
-					selectedCountryText.text = ("Selected Country: " + selectedCountry.name.ToString());
-					if (this.gameObject == selectedCountry)
-					{
-						CountryFactoryLimitText.text = ("Factory Limit: " + FactoryLimit.ToString ());						
-					}
-
-					//Debug.Log (selectedCountry.name);
-				}
-			}
-		}
-
 	}
 
 	void UpgradeFactoryLimitInCountry()
