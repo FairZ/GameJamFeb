@@ -12,6 +12,7 @@ public class Factory : MonoBehaviour {
 	private float moneyTimer = TIMER_MAX;
 
 	public GameObject moneyballPreFab;
+	private GameObject moneyball;
 
 	void Start()
 	{
@@ -20,24 +21,24 @@ public class Factory : MonoBehaviour {
 
 	public void UpdateFactory(float _cMult, bool _isManaged)
 	{
-		moneyTimer -= Time.deltaTime;
+		if (moneyball = null) {
+			moneyTimer -= Time.deltaTime;
+			if (moneyTimer <= 0.0f) {
+				float moneyVal = 0.0f;
 
-		if(moneyTimer <= 0.0f)
-		{
-			float moneyVal = 0.0f;
+				moneyVal = baseVal * _cMult * (Mathf.Pow (expEpsilon, factoryLevel / 10.0f)); //Will need balancing
 
-			moneyVal = baseVal * _cMult * (Mathf.Pow (expEpsilon, factoryLevel / 10.0f)); //Will need balancing
-
-			if(_isManaged)
-			{
-				//Add money directly to player
-				money.moneyValue += moneyVal;
+				if (_isManaged) {
+					//Add money directly to player
+					money.moneyValue += moneyVal;
+				} else {
+					//Release moneyball with moneyVal
+					moneyball = (GameObject)Instantiate (moneyballPreFab, transform.position, transform.rotation);
+					moneyball.GetComponent<collectMoney> ().value = (int)moneyVal;
+				}
 			}
-			else
-			{
-				//Release moneyball with moneyVal
-
-			}
+		} else {
+			moneyTimer = TIMER_MAX;
 		}
 
 	}
