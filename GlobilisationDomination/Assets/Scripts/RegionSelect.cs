@@ -24,6 +24,12 @@ public class RegionSelect : MonoBehaviour {
 				} else {
 					countryInfo.SetActive (false);
 				}
+
+				if (hit.collider.tag == ("pickup"))
+				{
+					GameObject.Destroy (hit.collider.gameObject);
+					money.moneyValue += hit.collider.gameObject.GetComponent<collectMoney> ().value;
+				}
 			}
 		}
 	}

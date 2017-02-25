@@ -80,32 +80,38 @@ public class StartingPosition : MonoBehaviour {
 				GameObject.Find ("nAmericaPoly").GetComponent<CountryController> ().isLocked = false; 
 				money.moneyValue = 1000000;
 				//make south america more expensive
+				//more expensive to go to other countries
 				break;
 			case 2:
 				GameObject.Find("sAmericaPoly").GetComponent<CountryController>().isLocked = false; 
-				money.moneyValue = 0;
-				//make north america more/less expensive
+				money.moneyValue = 300000;
+				//make north america less expensive
+				//higher natural factory limit
 				break;
 			case 3:
 				GameObject.Find ("ukPoly").GetComponent<CountryController> ().isLocked = false; 
-				money.moneyValue = 0;
+				money.moneyValue = 750000;
 				//make eu more expensive
+				//slightly more expensive to move to other countries
 				break;
 			case 4:
 				GameObject.Find("europePoly").GetComponent<CountryController>().isLocked = false;
-				money.moneyValue = 0;
+				money.moneyValue = 400000;
 				break;
 			case 5:
 				GameObject.Find("asiaPoly").GetComponent<CountryController>().isLocked = false;
-				money.moneyValue = 0;
+				money.moneyValue = 200000;
+				//highest natural factory limit
 				break;
 			case 6: 
 				GameObject.Find("australiaPoly").GetComponent<CountryController>().isLocked = false; 
-				money.moneyValue = 0;
+				money.moneyValue = 600000;
+				//little less expensive than uk to move to other countries
 				break;
 			case 7:
 				GameObject.Find("africaPoly").GetComponent<CountryController>().isLocked = false; 
-				money.moneyValue = 0;
+				money.moneyValue = 200000;
+				//cheaper upgrade cost
 				break; 
 			default:
 				break; 
