@@ -4,7 +4,7 @@ using System.Collections;
 public class RegionSelect : MonoBehaviour {
 
 	void FixedUpdate(){
-		if (Input.GetMouseButtonDown(0))
+		if (Input.GetMouseButtonDown(0) && !Input.GetKey(KeyCode.LeftControl))
 		{
 			RaycastHit hit; 
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
