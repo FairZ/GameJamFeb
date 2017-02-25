@@ -15,6 +15,7 @@ public class collectMoney : MonoBehaviour {
 	private const float timeoutMax = 10.0f;
 	private float timeout = timeoutMax;
 
+	public AudioClip collectSound;
 
 	void FixedUpdate()
 	{
@@ -49,10 +50,10 @@ public class collectMoney : MonoBehaviour {
 
 		//Audio stuff
 		AudioSource aRef = this.GetComponent<AudioSource>();
-		aRef.clip = SoundController.moneyBagCollect;
+		//aRef.clip = SoundController.moneyBagCollect;
 		aRef.pitch = 1f; //Account for variance from appear sound
 		aRef.pitch += Random.Range(-0.15f, 0.15f);
-		aRef.Play ();
+		aRef.PlayOneShot (collectSound);
 	}
 
 
