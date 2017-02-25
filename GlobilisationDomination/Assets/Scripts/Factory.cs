@@ -12,6 +12,7 @@ public class Factory : MonoBehaviour {
 	private float moneyTimer = TIMER_MAX;
 
 	public GameObject moneyballPreFab;
+	private GameObject moneyball;
 
 	void Start()
 	{
@@ -21,7 +22,6 @@ public class Factory : MonoBehaviour {
 	public void UpdateFactory(float _cMult, bool _isManaged)
 	{
 		moneyTimer -= Time.deltaTime;
-
 		if(moneyTimer <= 0.0f)
 		{
 			float moneyVal = 0.0f;
@@ -36,7 +36,8 @@ public class Factory : MonoBehaviour {
 			else
 			{
 				//Release moneyball with moneyVal
-
+				moneyball = (GameObject) Instantiate(moneyballPreFab,transform.position,transform.rotation);
+				moneyball.GetComponent<collectMoney>().value = (int)moneyVal;
 			}
 		}
 

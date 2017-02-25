@@ -1,10 +1,11 @@
 fileFormatVersion: 2
 guid: 2facf8655a46f0a45a1cc049e82050d6
-timeCreated: 1488015109
+timeCreated: 1488032537
 licenseType: Pro
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - moneyballPreFab: {fileID: 198418, guid: 1522d7263637ed649b3ec9edd9c9883a, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

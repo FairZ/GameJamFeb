@@ -3,15 +3,10 @@ using System.Collections;
 
 public class collectMoney : MonoBehaviour {
 
-	public float factoryLevelMultiplier = 1;
-	CountryController countryController; 
+	public int value; 
 
-
-	void Start(){
-		
-		countryController = transform.parent.parent.gameObject.GetComponent<CountryController>();
-		//Debug.Log (countryController.FactoryLevel);
-
+	void Collect()
+	{
 
 	}
 
