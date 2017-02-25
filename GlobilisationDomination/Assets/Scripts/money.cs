@@ -4,14 +4,17 @@ using UnityEngine.UI;
 
 public class money : MonoBehaviour {
 
-	public static int moneyValue; 
+	public float moneyValue = 0.0f; 
 
 	public Text moneyText;
 
+	public void AddMoney(float _incr)
+	{
+		moneyValue += _incr;
+	}
 
-	void Update (){
-		moneyValue = 100;
+	void LateUpdate()
+	{
 		moneyText.text = moneyValue.ToString();
-
 	}
 }
