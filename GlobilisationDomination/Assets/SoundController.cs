@@ -3,19 +3,8 @@ using UnityEngine.Audio;
 using System.Collections;
 
 public class SoundController : MonoBehaviour {
-
-	public AudioClip factoryPlace;
-	public AudioClip moneyBagAppear;
-	public AudioClip moneyBagCollect;
-	public AudioClip bgMusic;
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public static AudioClip factoryPlace;
+	public static AudioClip moneyBagAppear;
+	public static AudioClip moneyBagCollect;
+	public static AudioClip bgMusic;
 }

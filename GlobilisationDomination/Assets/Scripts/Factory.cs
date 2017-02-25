@@ -11,12 +11,15 @@ public class Factory : MonoBehaviour {
 	private const float TIMER_MAX = 2.0f; //Will need balancing
 	private float moneyTimer = TIMER_MAX;
 
-	public GameObject moneyballPreFab;
+	public GameObject moneyballPreFab; 
 	private GameObject moneyball;
 
 	void Start()
 	{
-		//Get moneyballPreFab
+		AudioSource aRef = this.GetComponent<AudioSource> ();
+		aRef.clip = SoundController.factoryPlace;
+		aRef.pitch += Random.Range (-0.15f, 0.15f);
+		aRef.Play ();
 	}
 
 	public void UpdateFactory(float _cMult, bool _isManaged)
@@ -35,6 +38,11 @@ public class Factory : MonoBehaviour {
 					//Release moneyball with moneyVal
 					moneyball = (GameObject)Instantiate (moneyballPreFab, transform.position, transform.rotation);
 					moneyball.GetComponent<collectMoney> ().value = (int)moneyVal;
+
+					AudioSource aRef = moneyball.GetComponent<AudioSource> ();
+					aRef.clip = SoundController.moneyBagAppear;
+					aRef.pitch += Random.Range (-0.15f, 0.15f);
+					aRef.Play ();
 				}
 			}
 		} else {
