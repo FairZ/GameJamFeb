@@ -4,6 +4,7 @@ using System.Collections;
 public class RegionSelect : MonoBehaviour {
 
 	public GameObject countryInfo;
+	public GameObject countryUnlock;
 
 	void FixedUpdate(){
 		if (Input.GetMouseButtonDown(0) && !Input.GetKey(KeyCode.LeftControl))
@@ -27,6 +28,7 @@ public class RegionSelect : MonoBehaviour {
 						countryInfo.SetActive (true);
 					} else {
 						countryInfo.SetActive (false);
+						countryUnlock.SetActive (true);
 					}
 					Debug.Log (CountryController.selectedCountry);
 				} else {
@@ -36,6 +38,7 @@ public class RegionSelect : MonoBehaviour {
 						c.SetOutlineCol (new Vector4 (0, 0, 0, 0));
 					}
 					countryInfo.SetActive (false);
+					countryUnlock.SetActive (false);
 				}
 
 				if (hit.collider.tag == ("pickup"))
