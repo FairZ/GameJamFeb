@@ -22,13 +22,14 @@ public class RegionSelect : MonoBehaviour {
 					}
 					//CountryController.selectedCountry.GetComponent<CountryController> ().SetOutlineCol (new Vector4 (0,0,0,0));
 					CountryController.selectedCountry = hit.collider.gameObject; 
-					CountryController cc = CountryController.selectedCountry.GetComponent<CountryController> ();
-					cc.SetOutlineCol (new Vector4 (107, 130, 103, 255));
+
 					if (!CountryController.selectedCountry.GetComponent<CountryController> ().isLocked) {
 						countryInfo.SetActive (true);
+						CountryController cc = CountryController.selectedCountry.GetComponent<CountryController> ();
+						cc.SetOutlineCol (new Vector4 (107, 130, 103, 255));
 					} else {
 						countryInfo.SetActive (false);
-						countryUnlock.SetActive (true);
+						//countryUnlock.SetActive (true);
 					}
 					Debug.Log (CountryController.selectedCountry);
 				} else {
@@ -38,7 +39,7 @@ public class RegionSelect : MonoBehaviour {
 						c.SetOutlineCol (new Vector4 (0, 0, 0, 0));
 					}
 					countryInfo.SetActive (false);
-					countryUnlock.SetActive (false);
+					//countryUnlock.SetActive (false);
 				}
 
 				if (hit.collider.tag == ("pickup"))
