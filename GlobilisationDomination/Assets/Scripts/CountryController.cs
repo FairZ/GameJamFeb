@@ -29,11 +29,13 @@ public class CountryController : MonoBehaviour {
 
 	public bool isLocked = true;
 
+	public GameObject insufficientFunds;
+
 	void Start()
 	{
 		//will need changing to balance
 		FactoryLimit = 1;
-
+		insufficientFunds = GameObject.Find ("Insufficient Funds");
 		Button FactoryLimitUpgrade = GameObject.Find ("upgradeButton").GetComponent<Button>();
 		FactoryLimitUpgrade.onClick.AddListener (UpgradeFactoryLimitInCountry);
 		CountryFactoryLimitText.text = ("Factory Limit: " + FactoryLimit.ToString ()); 
@@ -107,9 +109,10 @@ public class CountryController : MonoBehaviour {
 
 	public void SwitchAddingState()
 	{
-		if (money.moneyValue >= selectedCountry.GetComponent<CountryController> ().FactoryCost) 
-		{
+		if (money.moneyValue >= selectedCountry.GetComponent<CountryController> ().FactoryCost) {
 			selectedCountry.GetComponent<CountryController> ().isAddingFactory = !isAddingFactory;
+		} else {
+			insufficientFunds.SetActive (true);
 		}
 	}
 
