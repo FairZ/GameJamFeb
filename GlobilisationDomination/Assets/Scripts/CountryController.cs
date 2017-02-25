@@ -36,7 +36,7 @@ public class CountryController : MonoBehaviour {
 
 		Button FactoryLimitUpgrade = GameObject.Find ("upgradeButton").GetComponent<Button>();
 		FactoryLimitUpgrade.onClick.AddListener (UpgradeFactoryLimitInCountry);
-		CountryFactoryLimitText.text = ("Factory Limit: " + FactoryLimit.ToString ());
+		CountryFactoryLimitText.text = ("Factory Limit: " + FactoryLimit.ToString ()); 
 	}
 
 	void Update()
@@ -46,6 +46,20 @@ public class CountryController : MonoBehaviour {
 			f.GetComponent<Factory> ().UpdateFactory (cMultiplyer, ManagingDirector);
 		}
 
+		RegionNameText ();
+		//selectedCountryText.text = ("Region: " + selectedCountry.name.ToString ());
+
+	}
+
+	void RegionNameText()
+	{
+		if (selectedCountry.name == "africaPoly")
+			selectedCountryText.text = ("Region: Africa");
+		else if (selectedCountry.name == "asiaPoly")
+			selectedCountryText.text = ("Region: Asia");
+		else if (selectedCountry.name == "australiaPoly")
+			selectedCountryText = ("Region: Australia");
+		
 	}
 
 	void FixedUpdate()
