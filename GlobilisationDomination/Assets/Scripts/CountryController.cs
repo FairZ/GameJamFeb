@@ -11,6 +11,7 @@ public class CountryController : MonoBehaviour {
 	public int NoOfFactories;
 	public int SanctionPercentage;
 	public bool ManagingDirector;
+	public int ManagingDirectorCost;
 	public int FactoryCost; 
 	public int FactoryUpgradecost; 
 
