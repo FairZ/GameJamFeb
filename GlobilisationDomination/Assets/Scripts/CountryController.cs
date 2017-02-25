@@ -70,7 +70,7 @@ public class CountryController : MonoBehaviour {
 
 	public void SwitchAddingState()
 	{
-		isAddingFactory = !isAddingFactory;
+		selectedCountry.GetComponent<CountryController>().isAddingFactory = !isAddingFactory;
 	}
 
 	void AddFactory(Vector3 _loc)
