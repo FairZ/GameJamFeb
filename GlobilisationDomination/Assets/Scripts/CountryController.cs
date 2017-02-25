@@ -53,11 +53,16 @@ public class CountryController : MonoBehaviour {
 
 	void RegionNameText()
 	{
+		/*
 		if (selectedCountry.name == "africaPoly")
 			selectedCountryText.text = ("Region: Africa");
 		else if (selectedCountry.name == "asiaPoly")
 			selectedCountryText.text = ("Region: Asia");
 		else if (selectedCountry.name == "australiaPoly")
+<<<<<<< HEAD
+			selectedCountryText = ("Region: Australia");
+		*/
+=======
 			selectedCountryText.text = ("Region: Australia");
 		else if (selectedCountry.name == "europePoly")
 			selectedCountryText.text = ("Region: Europe");
@@ -68,6 +73,7 @@ public class CountryController : MonoBehaviour {
 		else if (selectedCountry.name == "ukPoly")
 			selectedCountryText.text = ("Region: United Kingdom");
 		
+>>>>>>> a19201cdbb103430a4fca90d3bc4dbb7a3c90f34
 	}
 
 	void FixedUpdate()

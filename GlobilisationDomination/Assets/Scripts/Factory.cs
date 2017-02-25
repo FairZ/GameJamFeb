@@ -14,12 +14,15 @@ public class Factory : MonoBehaviour {
 	public GameObject moneyballPreFab; 
 	private GameObject moneyball;
 
+	public AudioClip placedSound;
+	public AudioClip moneybagSound;
+
 	void Start()
 	{
 		AudioSource aRef = this.GetComponent<AudioSource> ();
-		aRef.clip = SoundController.factoryPlace;
+		//aRef.clip = SoundController.factoryPlace;
 		aRef.pitch += Random.Range (-0.15f, 0.15f);
-		aRef.Play ();
+		aRef.PlayOneShot (placedSound);
 	}
 
 	public void UpdateFactory(float _cMult, bool _isManaged)
@@ -48,9 +51,12 @@ public class Factory : MonoBehaviour {
 				moneyball.GetComponent<collectMoney> ().value = (int)moneyVal;
 
 				AudioSource aRef = moneyball.GetComponent<AudioSource> ();
-				aRef.clip = SoundController.moneyBagAppear;
+				//aRef.clip = SoundController.moneyBagAppear;
 				aRef.pitch += Random.Range (-0.15f, 0.15f);
-				aRef.Play ();
+				aRef.PlayOneShot (moneybagSound);
+
+				if (aRef.isPlaying)
+					Debug.Log ("Sound");
 
 				moneyTimer = TIMER_MAX;
 			}
