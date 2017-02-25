@@ -22,6 +22,8 @@ public class CountryController : MonoBehaviour {
 
 	public bool isAddingFactory = false;
 
+	public bool isLocked = true;
+
 	void Start()
 	{
 		//will need changing to balance
