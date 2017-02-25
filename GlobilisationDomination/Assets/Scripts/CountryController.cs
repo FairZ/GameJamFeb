@@ -15,6 +15,9 @@ public class CountryController : MonoBehaviour {
 	public Text CountryFactoryLimitText;
 	private Button FactoryLimitUpgrade;
 
+	public GameObject factoryPrefab;
+
+
 	void Start()
 	{
 		//will need changing to balance
