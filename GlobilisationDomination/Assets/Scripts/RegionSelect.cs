@@ -30,6 +30,11 @@ public class RegionSelect : MonoBehaviour {
 					}
 					Debug.Log (CountryController.selectedCountry);
 				} else {
+					if (CountryController.selectedCountry != null) 
+					{
+						CountryController c = CountryController.selectedCountry.GetComponent<CountryController> ();
+						c.SetOutlineCol (new Vector4 (0, 0, 0, 0));
+					}
 					countryInfo.SetActive (false);
 				}
 

@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 
 public class CountryController : MonoBehaviour {
 
+	public int maxFactoryLimit;
 	public int FactoryLimit;
 	public int NoOfFactories;
 	public int SanctionPercentage;
@@ -122,9 +123,9 @@ public class CountryController : MonoBehaviour {
 
 	public void SwitchAddingState()
 	{
-		if (money.moneyValue >= selectedCountry.GetComponent<CountryController> ().FactoryCost) {
+		if ((money.moneyValue >= selectedCountry.GetComponent<CountryController> ().FactoryCost) && (NoOfFactories < FactoryLimit)) {
 			selectedCountry.GetComponent<CountryController> ().isAddingFactory = !isAddingFactory;
-		} else {
+		} else if (NoOfFactories < FactoryLimit) {
 			insufficientFunds.SetActive (true);
 		}
 	}
@@ -149,7 +150,7 @@ public class CountryController : MonoBehaviour {
 				SwitchAddingState ();
 
 				factoryList.Add (fRef);
-
+				NoOfFactories++;
 				money.moneyValue -= selectedCountry.GetComponent<CountryController> ().FactoryCost;
 			}
 			else
