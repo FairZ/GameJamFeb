@@ -31,6 +31,8 @@ public class CountryController : MonoBehaviour {
 
 	public bool isLocked = true;
 
+	public GameObject insufficientFunds;
+
 	void Start()
 	{
 		//will need changing to balance
@@ -43,6 +45,12 @@ public class CountryController : MonoBehaviour {
 		matRef = this.gameObject.GetComponent<MeshRenderer>().material;
 		SetOutlineCol (new Vector4 (0,0,0,0)); //Initialising as off
 		Debug.Log (Shader.PropertyToID ("_OutlineColor"));
+
+		insufficientFunds = GameObject.Find ("Insufficient Funds");
+		Button FactoryLimitUpgrade = GameObject.Find ("upgradeButton").GetComponent<Button>();
+		FactoryLimitUpgrade.onClick.AddListener (UpgradeFactoryLimitInCountry);
+		CountryFactoryLimitText.text = ("Factory Limit: " + FactoryLimit.ToString ()); 
+
 	}
 
 	void Update()
@@ -114,9 +122,10 @@ public class CountryController : MonoBehaviour {
 
 	public void SwitchAddingState()
 	{
-		if (money.moneyValue >= selectedCountry.GetComponent<CountryController> ().FactoryCost) 
-		{
+		if (money.moneyValue >= selectedCountry.GetComponent<CountryController> ().FactoryCost) {
 			selectedCountry.GetComponent<CountryController> ().isAddingFactory = !isAddingFactory;
+		} else {
+			insufficientFunds.SetActive (true);
 		}
 	}
 
