@@ -13,6 +13,8 @@ public class CountryController : MonoBehaviour {
 	public int FactoryCost; 
 	public int FactoryUpgradecost; 
 
+	public float cMultiplyer = 1f;
+
 	public static GameObject startingCountry;
 	public static GameObject selectedCountry;
 
@@ -21,7 +23,7 @@ public class CountryController : MonoBehaviour {
 	private Button FactoryLimitUpgrade;
 
 	public GameObject factoryPrefab;
-	private List<GameObject> factoryList;
+	private List<GameObject> factoryList = new List<GameObject>();
 
 	public bool isAddingFactory = false;
 
@@ -34,14 +36,45 @@ public class CountryController : MonoBehaviour {
 
 		Button FactoryLimitUpgrade = GameObject.Find ("upgradeButton").GetComponent<Button>();
 		FactoryLimitUpgrade.onClick.AddListener (UpgradeFactoryLimitInCountry);
-		CountryFactoryLimitText.text = ("Factory Limit: " + FactoryLimit.ToString ());
+		CountryFactoryLimitText.text = ("Factory Limit: " + FactoryLimit.ToString ()); 
+	}
+
+	void Update()
+	{
+		foreach (GameObject f in factoryList)
+		{
+			f.GetComponent<Factory> ().UpdateFactory (cMultiplyer, ManagingDirector);
+		}
+
+		RegionNameText ();
+		//selectedCountryText.text = ("Region: " + selectedCountry.name.ToString ());
+
+	}
+
+	void RegionNameText()
+	{
+		if (selectedCountry.name == "africaPoly")
+			selectedCountryText.text = ("Region: Africa");
+		else if (selectedCountry.name == "asiaPoly")
+			selectedCountryText.text = ("Region: Asia");
+		else if (selectedCountry.name == "australiaPoly")
+			selectedCountryText.text = ("Region: Australia");
+		else if (selectedCountry.name == "europePoly")
+			selectedCountryText.text = ("Region: Europe");
+		else if (selectedCountry.name == "nAmericaPoly")
+			selectedCountryText.text = ("Region: North America");
+		else if (selectedCountry.name == "sAmericaPoly")
+			selectedCountryText.text = ("Region: South America");
+		else if (selectedCountry.name == "ukPoly")
+			selectedCountryText.text = ("Region: United Kingdom");
+		
 	}
 
 	void FixedUpdate()
 	{
 		if(isAddingFactory)
 		{
-			if(Input.GetMouseButton(0))
+			if(Input.GetMouseButton(1))
 			{
 				RaycastHit hit;
 				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
@@ -52,6 +85,10 @@ public class CountryController : MonoBehaviour {
 						AddFactory (hit.point);
 				}
 
+			}
+			else if(Input.GetMouseButton(0))
+			{
+				isAddingFactory = false;
 			}
 
 		}
@@ -70,16 +107,20 @@ public class CountryController : MonoBehaviour {
 
 	public void SwitchAddingState()
 	{
-		selectedCountry.GetComponent<CountryController>().isAddingFactory = !isAddingFactory;
+		if (money.moneyValue >= selectedCountry.GetComponent<CountryController> ().FactoryCost) 
+		{
+			selectedCountry.GetComponent<CountryController> ().isAddingFactory = !isAddingFactory;
+		}
 	}
 
 	void AddFactory(Vector3 _loc)
 	{
 		GameObject pRef = GameObject.Find ("globe");
-
 		Vector3 dir = (pRef.transform.position + _loc).normalized;
-
 		GameObject fRef = Instantiate (factoryPrefab, _loc + (dir * 10.0f), new Quaternion ()) as GameObject;
+
+		fRef.transform.localScale *= 0.25f;
+		fRef.transform.up = dir;
 
 		RaycastHit hit;
 		if(fRef.GetComponent<Rigidbody>().SweepTest(-dir, out hit))
@@ -87,11 +128,19 @@ public class CountryController : MonoBehaviour {
 			if(hit.collider.gameObject == selectedCountry)
 			{
 				fRef.transform.position = hit.point;
-				fRef.transform.up = dir;
+
+				fRef.transform.parent = selectedCountry.transform;
 				SwitchAddingState ();
+
+				factoryList.Add (fRef);
+
+				money.moneyValue -= selectedCountry.GetComponent<CountryController> ().FactoryCost;
+			}
+			else
+			{
+				GameObject.Destroy (fRef);
 			}
 		}
-
 
 	}
 

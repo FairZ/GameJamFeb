@@ -8,7 +8,7 @@ public class Factory : MonoBehaviour {
 	private float expEpsilon = 0.01f;
 	public int factoryLevel = 1;
 
-	private const float TIMER_MAX = 2.0f; //Will need balancing
+	private const float TIMER_MAX = 20.0f; //Will need balancing
 	private float moneyTimer = TIMER_MAX;
 
 	public GameObject moneyballPreFab; 
@@ -24,29 +24,36 @@ public class Factory : MonoBehaviour {
 
 	public void UpdateFactory(float _cMult, bool _isManaged)
 	{
-		if (moneyball = null) {
-			moneyTimer -= Time.deltaTime;
-			if (moneyTimer <= 0.0f) {
-				float moneyVal = 0.0f;
+		//TODO check whether the last moneybag has been taken
 
-				moneyVal = baseVal * _cMult * (Mathf.Pow (expEpsilon, factoryLevel / 10.0f)); //Will need balancing
+		moneyTimer -= Time.deltaTime;
+		if (moneyTimer <= 0.0f) {
+			float moneyVal = 0.0f;
 
-				if (_isManaged) {
-					//Add money directly to player
-					money.moneyValue += moneyVal;
-				} else {
-					//Release moneyball with moneyVal
-					moneyball = (GameObject)Instantiate (moneyballPreFab, transform.position, transform.rotation);
-					moneyball.GetComponent<collectMoney> ().value = (int)moneyVal;
+			moneyVal = baseVal * _cMult * (Mathf.Pow (expEpsilon, factoryLevel / 10.0f)); //Will need balancing
 
-					AudioSource aRef = moneyball.GetComponent<AudioSource> ();
-					aRef.clip = SoundController.moneyBagAppear;
-					aRef.pitch += Random.Range (-0.15f, 0.15f);
-					aRef.Play ();
-				}
+			if (_isManaged) {
+				//Add money directly to player
+				money.moneyValue += moneyVal;
+			} else {
+				//Release moneyball with moneyVal
+				moneyball = (GameObject)Instantiate (moneyballPreFab, transform.position, transform.rotation);
+
+				moneyball.transform.localScale *= 0.1f;
+				moneyball.transform.parent = this.transform.parent;
+				moneyball.transform.up = this.transform.up;
+
+				moneyball.GetComponent<collectMoney> ().parentFactory = this.gameObject;
+
+				moneyball.GetComponent<collectMoney> ().value = (int)moneyVal;
+
+				AudioSource aRef = moneyball.GetComponent<AudioSource> ();
+				aRef.clip = SoundController.moneyBagAppear;
+				aRef.pitch += Random.Range (-0.15f, 0.15f);
+				aRef.Play ();
+
+				moneyTimer = TIMER_MAX;
 			}
-		} else {
-			moneyTimer = TIMER_MAX;
 		}
 
 	}
