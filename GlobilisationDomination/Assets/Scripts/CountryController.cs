@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class CountryController : MonoBehaviour {
@@ -9,14 +10,15 @@ public class CountryController : MonoBehaviour {
 	public int SanctionPercentage;
 	public bool ManagingDirector;
 
-
+	public static GameObject startingCountry;
 	public static GameObject selectedCountry;
+
 	public Text selectedCountryText;
 	public Text CountryFactoryLimitText;
 	private Button FactoryLimitUpgrade;
 
 	public GameObject factoryPrefab;
-
+	private List<GameObject> factoryList;
 
 	void Start()
 	{
@@ -38,6 +40,10 @@ public class CountryController : MonoBehaviour {
 		}
 	}
 
+	void AddFactory()
+	{
+		factoryPrefab.gameObject.GetComponent<Rigidbody>().
+	}
 
 
 }
