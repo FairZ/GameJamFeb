@@ -11,7 +11,7 @@ public class collectMoney : MonoBehaviour {
 
 	//Relative to the factory
 	private const float heightLimit = 10f;
-	private float startPos;
+	private Vector3 startPos;
 
 	private const float timeoutMax = 10.0f;
 	private float timeout = timeoutMax;
@@ -43,14 +43,7 @@ public class collectMoney : MonoBehaviour {
 			{
 				Destroy (this.gameObject);
 			}
-			else
-			{
-				float alpha = (timeout / timeoutMax) * 100.0f;
-				foreach (Material m in matRefs) 
-				{
-					m.color.a = alpha;
-				}
-			}
+
 		}
 
 		this.transform.Translate (this.transform.up * Time.deltaTime);
