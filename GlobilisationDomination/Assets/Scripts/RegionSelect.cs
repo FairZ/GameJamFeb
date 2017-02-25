@@ -14,7 +14,15 @@ public class RegionSelect : MonoBehaviour {
 			if (Physics.Raycast(ray, out hit, 10000.0f))
 			{
 				if (hit.collider.tag == ("country")) {
+					if (CountryController.selectedCountry != null) 
+					{
+						CountryController c = CountryController.selectedCountry.GetComponent<CountryController> ();
+						c.SetOutlineCol (new Vector4 (0, 0, 0, 0));
+					}
+					//CountryController.selectedCountry.GetComponent<CountryController> ().SetOutlineCol (new Vector4 (0,0,0,0));
 					CountryController.selectedCountry = hit.collider.gameObject; 
+					CountryController cc = CountryController.selectedCountry.GetComponent<CountryController> ();
+					cc.SetOutlineCol (new Vector4 (107, 130, 103, 255));
 					if (!CountryController.selectedCountry.GetComponent<CountryController> ().isLocked) {
 						countryInfo.SetActive (true);
 					} else {

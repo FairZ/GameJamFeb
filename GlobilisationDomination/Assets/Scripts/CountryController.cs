@@ -25,6 +25,8 @@ public class CountryController : MonoBehaviour {
 	public GameObject factoryPrefab;
 	private List<GameObject> factoryList = new List<GameObject>();
 
+	private Material matRef;
+
 	public bool isAddingFactory = false;
 
 	public bool isLocked = true;
@@ -34,9 +36,13 @@ public class CountryController : MonoBehaviour {
 		//will need changing to balance
 		FactoryLimit = 1;
 
-		Button FactoryLimitUpgrade = GameObject.Find ("upgradeButton").GetComponent<Button>();
-		FactoryLimitUpgrade.onClick.AddListener (UpgradeFactoryLimitInCountry);
-		CountryFactoryLimitText.text = ("Factory Limit: " + FactoryLimit.ToString ()); 
+		//Button FactoryLimitUpgrade = GameObject.Find ("upgradeButton").GetComponent<Button>();
+		//FactoryLimitUpgrade.onClick.AddListener (UpgradeFactoryLimitInCountry);
+		//CountryFactoryLimitText.text = ("Factory Limit: " + FactoryLimit.ToString ()); 
+
+		matRef = this.gameObject.GetComponent<MeshRenderer>().material;
+		SetOutlineCol (new Vector4 (0,0,0,0)); //Initialising as off
+		Debug.Log (Shader.PropertyToID ("_OutlineColor"));
 	}
 
 	void Update()
@@ -68,6 +74,7 @@ public class CountryController : MonoBehaviour {
 			selectedCountryText.text = ("Region: South America");
 		else if (selectedCountry.name == "ukPoly")
 			selectedCountryText.text = ("Region: United Kingdom");
+
 	}
 
 	void FixedUpdate()
@@ -143,6 +150,12 @@ public class CountryController : MonoBehaviour {
 		}
 
 	}
+	//Takes values between 0-255
+	public void SetOutlineCol(Vector4 _col)
+	{
+		Vector4 c = _col.normalized;
 
+		matRef.SetColor (Shader.PropertyToID("_OutlineColor"),new Color(c.x, c.y, c.z, c.w));
+	}
 
 }
