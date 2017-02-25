@@ -41,6 +41,11 @@ public class CountryController : MonoBehaviour {
 				{
 					selectedCountry = hit.collider.gameObject; 
 					selectedCountryText.text = ("Selected Country: " + selectedCountry.name.ToString());
+					if (this.gameObject == selectedCountry)
+					{
+						CountryFactoryLimitText.text = ("Factory Limit: " + FactoryLimit.ToString ());						
+					}
+
 					//Debug.Log (selectedCountry.name);
 				}
 			}
@@ -53,8 +58,8 @@ public class CountryController : MonoBehaviour {
 		if (this.gameObject == selectedCountry)
 		{
 			this.FactoryLimit++;
-
 			CountryFactoryLimitText.text = ("Factory Limit: " + FactoryLimit.ToString ());
+
 		}
 	}
 
