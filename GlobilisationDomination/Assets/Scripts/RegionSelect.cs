@@ -3,6 +3,8 @@ using System.Collections;
 
 public class RegionSelect : MonoBehaviour {
 
+	public GameObject countryInfo;
+
 	void FixedUpdate(){
 		if (Input.GetMouseButtonDown(0) && !Input.GetKey(KeyCode.LeftControl))
 		{
@@ -11,10 +13,16 @@ public class RegionSelect : MonoBehaviour {
 
 			if (Physics.Raycast(ray, out hit, 10000.0f))
 			{
-				if (hit.collider.tag == ("country"))
-				{
+				if (hit.collider.tag == ("country")) {
 					CountryController.selectedCountry = hit.collider.gameObject; 
+					if (!CountryController.selectedCountry.GetComponent<CountryController> ().isLocked) {
+						countryInfo.SetActive (true);
+					} else {
+						countryInfo.SetActive (false);
+					}
 					Debug.Log (CountryController.selectedCountry);
+				} else {
+					countryInfo.SetActive (false);
 				}
 			}
 		}
