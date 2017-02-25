@@ -1,8 +1,7 @@
 TODO
 ----
 - Assigning base values to countries
-- Land Unlocking
-- Factory Limits
+- Factory Limits Upgrade
 - Managing Director
 - Upgrading Factories
 
