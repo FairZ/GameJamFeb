@@ -11,10 +11,10 @@ public class WorldControl : MonoBehaviour {
 	public GameObject World;
 
 	void Update () {
-		if (Input.GetMouseButtonDown (0)) {
+		if (Input.GetMouseButtonDown (0) && Input.GetKey(KeyCode.LeftControl)) {
 			PreviousMousePos = Input.mousePosition;
 		}
-		if (Input.GetMouseButton (0)) {
+		if (Input.GetMouseButton (0) && Input.GetKey(KeyCode.LeftControl)) {
 			MouseMovement = PreviousMousePos - Input.mousePosition;
 			World.transform.Rotate (0, MouseMovement.x/10, 0);
 			PreviousPos = transform.position;

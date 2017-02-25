@@ -77,6 +77,7 @@ public class StartingPosition : MonoBehaviour {
 			{
 			case 1:
 				//CountryController.startingCountry = na;
+				//GameObject.Find("")
 				break;
 			case 2:
 				//CountryController.startingCountry = southamerica;
