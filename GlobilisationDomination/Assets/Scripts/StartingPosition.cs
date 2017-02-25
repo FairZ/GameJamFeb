@@ -77,26 +77,31 @@ public class StartingPosition : MonoBehaviour {
 			{
 			case 1:
 				//CountryController.startingCountry = na;
-				//GameObject.Find("")
+				GameObject.Find("nAmericaPoly").GetComponent<CountryController>().isLocked = false; 
 				break;
 			case 2:
 				//CountryController.startingCountry = southamerica;
+				GameObject.Find("sAmericaPoly").GetComponent<CountryController>().isLocked = false; 
 				break;
 			case 3:
 				//CountryController.startingCountry = uk;
-
+				GameObject.Find("ukPoly").GetComponent<CountryController>().isLocked = false; 
 				break;
 			case 4:
 				//CountryController.startingCountry = eu;
+				GameObject.Find("europePoly").GetComponent<CountryController>().isLocked = false; 
 				break;
 			case 5:
 				//CountryController.startingCountry = asia;
+				GameObject.Find("asiaPoly").GetComponent<CountryController>().isLocked = false; 
 				break;
 			case 6: 
 				//CountryController.startingCountry = australia;
+				GameObject.Find("australiaPoly").GetComponent<CountryController>().isLocked = false; 
 				break;
 			case 7:
 				//CountryController.startingCountry = africa;
+				GameObject.Find("africaPoly").GetComponent<CountryController>().isLocked = false; 
 				break; 
 			default:
 				break; 
