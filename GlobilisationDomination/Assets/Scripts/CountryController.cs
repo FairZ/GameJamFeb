@@ -38,7 +38,7 @@ public class CountryController : MonoBehaviour {
 	void Start()
 	{
 		//will need changing to balance
-		FactoryLimit = 1;
+
 
 		//Button FactoryLimitUpgrade = GameObject.Find ("upgradeButton").GetComponent<Button>();
 		//FactoryLimitUpgrade.onClick.AddListener (UpgradeFactoryLimitInCountry);
