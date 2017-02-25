@@ -41,7 +41,7 @@ public class CountryController : MonoBehaviour {
 	{
 		if(isAddingFactory)
 		{
-			if(Input.GetMouseButton(0))
+			if(Input.GetMouseButton(1))
 			{
 				RaycastHit hit;
 				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
@@ -52,6 +52,10 @@ public class CountryController : MonoBehaviour {
 						AddFactory (hit.point);
 				}
 
+			}
+			else if(Input.GetMouseButton(0))
+			{
+				isAddingFactory = false;
 			}
 
 		}
@@ -70,15 +74,16 @@ public class CountryController : MonoBehaviour {
 
 	public void SwitchAddingState()
 	{
-		selectedCountry.GetComponent<CountryController>().isAddingFactory = !isAddingFactory;
+		if (money.moneyValue >= selectedCountry.GetComponent<CountryController> ().FactoryCost) 
+		{
+			selectedCountry.GetComponent<CountryController> ().isAddingFactory = !isAddingFactory;
+		}
 	}
 
 	void AddFactory(Vector3 _loc)
 	{
 		GameObject pRef = GameObject.Find ("globe");
-
 		Vector3 dir = (pRef.transform.position + _loc).normalized;
-
 		GameObject fRef = Instantiate (factoryPrefab, _loc + (dir * 10.0f), new Quaternion ()) as GameObject;
 
 		RaycastHit hit;
@@ -88,10 +93,16 @@ public class CountryController : MonoBehaviour {
 			{
 				fRef.transform.position = hit.point;
 				fRef.transform.up = dir;
+				fRef.transform.parent = pRef.transform;
 				SwitchAddingState ();
+
+				money.moneyValue -= selectedCountry.GetComponent<CountryController> ().FactoryCost;
+			}
+			else
+			{
+				GameObject.Destroy (fRef);
 			}
 		}
-
 
 	}
 
