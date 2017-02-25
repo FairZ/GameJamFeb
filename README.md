@@ -4,8 +4,6 @@ TO DO:
 
 -money system
 
--workforce system
-
 -globe interaction
 
 -factory placement
