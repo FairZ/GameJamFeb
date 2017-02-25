@@ -5,6 +5,7 @@ public class RegionSelect : MonoBehaviour {
 
 	public GameObject countryInfo;
 	public GameObject countryUnlock;
+	public GameObject insufficientFunds;
 
 	void FixedUpdate(){
 		if (Input.GetMouseButtonDown(0) && !Input.GetKey(KeyCode.LeftControl))
@@ -22,14 +23,14 @@ public class RegionSelect : MonoBehaviour {
 					}
 					//CountryController.selectedCountry.GetComponent<CountryController> ().SetOutlineCol (new Vector4 (0,0,0,0));
 					CountryController.selectedCountry = hit.collider.gameObject; 
-
+					CountryController cc = CountryController.selectedCountry.GetComponent<CountryController> ();
+					cc.SetOutlineCol (new Vector4 (107, 130, 103, 255));
 					if (!CountryController.selectedCountry.GetComponent<CountryController> ().isLocked) {
 						countryInfo.SetActive (true);
-						CountryController cc = CountryController.selectedCountry.GetComponent<CountryController> ();
-						cc.SetOutlineCol (new Vector4 (107, 130, 103, 255));
+						countryUnlock.SetActive (false);
 					} else {
 						countryInfo.SetActive (false);
-						//countryUnlock.SetActive (true);
+						countryUnlock.SetActive (true);
 					}
 					Debug.Log (CountryController.selectedCountry);
 				} else {
@@ -39,7 +40,7 @@ public class RegionSelect : MonoBehaviour {
 						c.SetOutlineCol (new Vector4 (0, 0, 0, 0));
 					}
 					countryInfo.SetActive (false);
-					//countryUnlock.SetActive (false);
+					countryUnlock.SetActive (false);
 				}
 
 				if (hit.collider.tag == ("pickup"))
@@ -48,6 +49,18 @@ public class RegionSelect : MonoBehaviour {
 					money.moneyValue += hit.collider.gameObject.GetComponent<collectMoney> ().value;
 				}
 			}
+		}
+	}
+
+	public void UnlockRegion()
+	{
+		if (money.moneyValue >= CountryController.selectedCountry.GetComponent<CountryController> ().purchaseCost) {
+			CountryController.selectedCountry.GetComponent<CountryController> ().isLocked = false;
+			money.moneyValue -= CountryController.selectedCountry.GetComponent<CountryController> ().purchaseCost;
+			countryUnlock.SetActive (false);
+			countryInfo.SetActive (true);
+		} else {
+			insufficientFunds.SetActive (true);
 		}
 	}
 }

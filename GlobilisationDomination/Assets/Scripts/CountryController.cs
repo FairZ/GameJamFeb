@@ -14,6 +14,7 @@ public class CountryController : MonoBehaviour {
 	public int ManagingDirectorCost;
 	public int FactoryCost; 
 	public int FactoryUpgradecost; 
+	public int purchaseCost;
 
 	public float cMultiplyer = 1f;
 
