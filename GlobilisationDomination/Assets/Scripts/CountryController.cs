@@ -42,7 +42,7 @@ public class CountryController : MonoBehaviour {
 
 	void AddFactory()
 	{
-		factoryPrefab.gameObject.GetComponent<Rigidbody>().
+		
 	}
 
 
