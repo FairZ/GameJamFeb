@@ -12,14 +12,10 @@ public class Factory : MonoBehaviour {
 	private float moneyTimer = TIMER_MAX;
 
 	public GameObject moneyballPreFab;
-	public money playerMoneyRef;
 
 	void Start()
 	{
 		//Get moneyballPreFab
-
-		//Get playerMoneyRef
-		playerMoneyRef = GameObject.Find("ScriptHolder").GetComponent<money>(); //Check if the name of the object is gonna change
 	}
 
 	public void UpdateFactory(float _cMult, bool _isManaged)
@@ -35,7 +31,7 @@ public class Factory : MonoBehaviour {
 			if(_isManaged)
 			{
 				//Add money directly to player
-				playerMoneyRef.AddMoney(moneyVal);
+				money.moneyValue += moneyVal;
 			}
 			else
 			{
