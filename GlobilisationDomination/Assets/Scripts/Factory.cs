@@ -61,9 +61,8 @@ public class Factory : MonoBehaviour {
 
 				if (aRef.isPlaying)
 					Debug.Log ("Sound");
-
-				moneyTimer = TIMER_MAX;
 			}
+			moneyTimer = TIMER_MAX;
 		}
 
 	}
