@@ -25,6 +25,7 @@ public class CountryController : MonoBehaviour {
 	private CountryController selectedController;
 
 	public Text selectedCountryText;
+	public Text lockedCountryText;
 	public Text countryUnlockNameText;
 	public Text CountryFactoryLimitText;
 	private Button FactoryLimitUpgrade;
@@ -78,20 +79,28 @@ public class CountryController : MonoBehaviour {
 	void RegionNameText()
 	{
 		if (selectedCountry != null) {
-			if (selectedCountry.name == "africaPoly")
+			if (selectedCountry.name == "africaPoly") {
 				selectedCountryText.text = ("Region: Africa");
-			else if (selectedCountry.name == "asiaPoly")
+				lockedCountryText.text = ("Region: Africa");
+			} else if (selectedCountry.name == "asiaPoly") {
 				selectedCountryText.text = ("Region: Asia");
-			else if (selectedCountry.name == "australiaPoly")
+				lockedCountryText.text = ("Region: Asia");
+			} else if (selectedCountry.name == "australiaPoly") {
 				selectedCountryText.text = ("Region: Australia");
-			else if (selectedCountry.name == "europePoly")
+				lockedCountryText.text = ("Region: Australia");
+			} else if (selectedCountry.name == "europePoly") {
 				selectedCountryText.text = ("Region: Europe");
-			else if (selectedCountry.name == "nAmericaPoly")
+				lockedCountryText.text = ("Region: Europe");
+			} else if (selectedCountry.name == "nAmericaPoly") {
 				selectedCountryText.text = ("Region: North America");
-			else if (selectedCountry.name == "sAmericaPoly")
+				lockedCountryText.text = ("Region: North America");
+			} else if (selectedCountry.name == "sAmericaPoly") {
 				selectedCountryText.text = ("Region: South America");
-			else if (selectedCountry.name == "ukPoly")
+				lockedCountryText.text = ("Region: South America");
+			} else if (selectedCountry.name == "ukPoly") {
 				selectedCountryText.text = ("Region: United Kingdom");
+				lockedCountryText.text = ("Region: United Kingdom");
+			}
 		}
 	}
 
