@@ -31,8 +31,6 @@ public class Factory : MonoBehaviour {
 
 	public void UpdateFactory(float _cMult, bool _isManaged)
 	{
-		//TODO check whether the last moneybag has been taken
-
 		moneyTimer -= Time.deltaTime;
 		if (moneyTimer <= 0.0f) {
 			float moneyVal = 0.0f;
@@ -41,7 +39,7 @@ public class Factory : MonoBehaviour {
 
 			if (_isManaged) {
 				//Add money directly to player
-				money.moneyValue += moneyVal;
+				money.moneyValue += (int)moneyVal;
 			} else {
 				//Release moneyball with moneyVal
 				moneyball = (GameObject)Instantiate (moneyballPreFab, transform.position, transform.rotation);
