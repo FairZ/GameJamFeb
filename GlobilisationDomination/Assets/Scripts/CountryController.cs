@@ -65,7 +65,7 @@ public class CountryController : MonoBehaviour {
 		}
 
 		RegionNameText ();
-		if (selectedController != null)
+		if (selectedCountry != null)
 		{
 			selectedController = selectedCountry.GetComponent<CountryController> ();
 			CountryFactoryLimitText.text = ("No. of Factories: " + selectedController.NoOfFactories.ToString () + "/" + selectedController.FactoryLimit.ToString ());
