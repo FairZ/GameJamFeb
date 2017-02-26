@@ -10,4 +10,5 @@ TODO
 GUI
 ---
 - Button Names - Including Costs
+	- Factory info!
 - Needs to say some information about countries to unlock
