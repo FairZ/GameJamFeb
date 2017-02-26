@@ -183,4 +183,15 @@ public class CountryController : MonoBehaviour {
 		matRef.SetColor (Shader.PropertyToID("_OutlineColor"),new Color(c.x, c.y, c.z, c.w));
 	}
 
+	public void PurchaseManagingDirector()
+	{
+		if (selectedCountry != null && money.moneyValue >= ManagingDirectorCost) 
+		{
+			money.moneyValue -= ManagingDirectorCost;
+			ManagingDirector = true;
+		} 
+		else if (money.moneyValue <= ManagingDirectorCost)
+			GameObject.Find ("Insufficient Funds").SetActive (false);
+	}
+
 }
