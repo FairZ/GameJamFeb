@@ -83,6 +83,8 @@ public class RegionSelect : MonoBehaviour {
 			c.FactoryLimit++;
 			money.moneyValue -= c.FactoryLimitUpgradeCost;
 			countryInfo.SetActive (true);
+
+			c.FactoryLimitUpgradeCost += (int)Mathf.Pow (0.01f, c.maxFactoryLimit/10.0f);
 		}
 		else if (c.FactoryLimit < c.maxFactoryLimit)
 		{
@@ -96,7 +98,7 @@ public class RegionSelect : MonoBehaviour {
 		{
 			money.moneyValue -= Factory.selectedFactory.upgradeCost;
 			Factory.selectedFactory.factoryLevel++;
-			Factory.selectedFactory.upgradeCost += Mathf.Pow (Factory.selectedFactory.expEpsilon, Factory.selectedFactory.factoryLevel); //Will need to balance
+			Factory.selectedFactory.upgradeCost += (int)Mathf.Pow (Factory.selectedFactory.expEpsilon, Factory.selectedFactory.factoryLevel); //Will need to balance
 		}
 		else if(money.moneyValue <= Factory.selectedFactory.upgradeCost)
 		{
