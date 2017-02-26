@@ -80,7 +80,7 @@ public class RegionSelect : MonoBehaviour {
 		CountryController c = CountryController.selectedCountry.GetComponent<CountryController> ();
 		if ((money.moneyValue >= c.FactoryLimitUpgradeCost) && (c.FactoryLimit < c.maxFactoryLimit)) {
 			c.FactoryLimit++;
-			money.moneyValue -= c.purchaseCost;
+			money.moneyValue -= c.FactoryLimitUpgradeCost;
 			countryInfo.SetActive (true);
 		}
 		else if (c.FactoryLimit < c.maxFactoryLimit)
