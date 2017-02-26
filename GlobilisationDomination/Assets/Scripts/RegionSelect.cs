@@ -82,6 +82,7 @@ public class RegionSelect : MonoBehaviour {
 			c.FactoryLimit++;
 			money.moneyValue -= c.FactoryLimitUpgradeCost;
 			countryInfo.SetActive (true);
+			c.CountryFactoryLimitText.text = ("No. of Factories: " + c.NoOfFactories.ToString () + "/" + c.FactoryLimit.ToString ());
 		}
 		else if (c.FactoryLimit < c.maxFactoryLimit)
 		{
