@@ -86,7 +86,7 @@ public class StartingPosition : MonoBehaviour {
 				GameObject.Find ("asiaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
 				GameObject.Find ("australiaPoly").GetComponent<CountryController> ().purchaseCost = 600000;
 				GameObject.Find ("europePoly").GetComponent<CountryController> ().purchaseCost = 400000;
-				GameObject.Find ("sAmericaPoly").GetComponent<CountryController> ().purchaseCost = 300000;
+				GameObject.Find ("sAmericaPoly").GetComponent<CountryController> ().purchaseCost = 600000;
 				GameObject.Find ("ukPoly").GetComponent<CountryController> ().purchaseCost = 750000;
 
 				break;
@@ -100,7 +100,7 @@ public class StartingPosition : MonoBehaviour {
 				GameObject.Find ("asiaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
 				GameObject.Find ("australiaPoly").GetComponent<CountryController> ().purchaseCost = 600000;
 				GameObject.Find ("europePoly").GetComponent<CountryController> ().purchaseCost = 400000;
-				GameObject.Find ("nAmericaPoly").GetComponent<CountryController> ().purchaseCost = 1000000;
+				GameObject.Find ("nAmericaPoly").GetComponent<CountryController> ().purchaseCost = 700000;
 				GameObject.Find ("ukPoly").GetComponent<CountryController> ().purchaseCost = 750000;
 				break;
 			case 3:
@@ -112,7 +112,7 @@ public class StartingPosition : MonoBehaviour {
 				GameObject.Find ("africaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
 				GameObject.Find ("asiaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
 				GameObject.Find ("australiaPoly").GetComponent<CountryController> ().purchaseCost = 600000;
-				GameObject.Find ("europePoly").GetComponent<CountryController> ().purchaseCost = 400000;
+				GameObject.Find ("europePoly").GetComponent<CountryController> ().purchaseCost = 800000;
 				GameObject.Find ("nAmericaPoly").GetComponent<CountryController> ().purchaseCost = 1000000;
 				GameObject.Find ("sAmericaPoly").GetComponent<CountryController> ().purchaseCost = 300000;
 				break;
@@ -123,7 +123,7 @@ public class StartingPosition : MonoBehaviour {
 				GameObject.Find ("africaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
 				GameObject.Find ("asiaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
 				GameObject.Find ("australiaPoly").GetComponent<CountryController> ().purchaseCost = 600000;
-				GameObject.Find ("ukPoly").GetComponent<CountryController> ().purchaseCost = 750000;
+				GameObject.Find ("ukPoly").GetComponent<CountryController> ().purchaseCost = 900000;
 				GameObject.Find ("nAmericaPoly").GetComponent<CountryController> ().purchaseCost = 1000000;
 				GameObject.Find ("sAmericaPoly").GetComponent<CountryController> ().purchaseCost = 300000;
 				break;
@@ -144,12 +144,12 @@ public class StartingPosition : MonoBehaviour {
 				money.moneyValue = 600000;
 				//little less expensive than uk to move to other countries
 				//20 max limit for factories
-				GameObject.Find ("africaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
-				GameObject.Find ("europePoly").GetComponent<CountryController> ().purchaseCost = 400000;
-				GameObject.Find ("asiaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
-				GameObject.Find ("ukPoly").GetComponent<CountryController> ().purchaseCost = 750000;
-				GameObject.Find ("nAmericaPoly").GetComponent<CountryController> ().purchaseCost = 1000000;
-				GameObject.Find ("sAmericaPoly").GetComponent<CountryController> ().purchaseCost = 300000;
+				GameObject.Find ("africaPoly").GetComponent<CountryController> ().purchaseCost = 300000;
+				GameObject.Find ("europePoly").GetComponent<CountryController> ().purchaseCost = 500000;
+				GameObject.Find ("asiaPoly").GetComponent<CountryController> ().purchaseCost = 300000;
+				GameObject.Find ("ukPoly").GetComponent<CountryController> ().purchaseCost = 850000;
+				GameObject.Find ("nAmericaPoly").GetComponent<CountryController> ().purchaseCost = 1100000;
+				GameObject.Find ("sAmericaPoly").GetComponent<CountryController> ().purchaseCost = 400000;
 				break;
 			case 7:
 				GameObject.Find("africaPoly").GetComponent<CountryController>().isLocked = false; 

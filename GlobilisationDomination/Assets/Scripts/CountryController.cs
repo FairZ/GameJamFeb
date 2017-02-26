@@ -50,7 +50,6 @@ public class CountryController : MonoBehaviour {
 
 		matRef = this.gameObject.GetComponent<MeshRenderer>().material;
 		SetOutlineCol (new Vector4 (0,0,0,0)); //Initialising as off
-		Debug.Log (Shader.PropertyToID ("_OutlineColor"));
 
 		insufficientFunds = GameObject.Find ("Insufficient Funds");
 		CountryFactoryLimitText.text = ("No. of Factories: " + NoOfFactories.ToString() + "/" + FactoryLimit.ToString ()); 
@@ -65,8 +64,11 @@ public class CountryController : MonoBehaviour {
 		}
 
 		RegionNameText ();
-		selectedController = selectedCountry.GetComponent<CountryController> ();
-		CountryFactoryLimitText.text = ("No. of Factories: " + selectedController.NoOfFactories.ToString() + "/" + selectedController.FactoryLimit.ToString ());
+		if (selectedController != null)
+		{
+			selectedController = selectedCountry.GetComponent<CountryController> ();
+			CountryFactoryLimitText.text = ("No. of Factories: " + selectedController.NoOfFactories.ToString () + "/" + selectedController.FactoryLimit.ToString ());
+		}
 		//selectedCountryText.text = ("Region: " + selectedCountry.name.ToString ());
 
 	}
