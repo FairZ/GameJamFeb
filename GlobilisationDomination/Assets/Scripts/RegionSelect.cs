@@ -27,6 +27,7 @@ public class RegionSelect : MonoBehaviour {
 					CountryController cc = CountryController.selectedCountry.GetComponent<CountryController> ();
 					cc.SetOutlineCol (new Vector4 (107, 130, 103, 255));
 					if (!CountryController.selectedCountry.GetComponent<CountryController> ().isLocked) {
+						
 						countryInfo.SetActive (true);
 						countryUnlock.SetActive (false);
 						factoryUpgrade.SetActive (false);
@@ -82,7 +83,6 @@ public class RegionSelect : MonoBehaviour {
 			c.FactoryLimit++;
 			money.moneyValue -= c.FactoryLimitUpgradeCost;
 			countryInfo.SetActive (true);
-			c.CountryFactoryLimitText.text = ("No. of Factories: " + c.NoOfFactories.ToString () + "/" + c.FactoryLimit.ToString ());
 		}
 		else if (c.FactoryLimit < c.maxFactoryLimit)
 		{
