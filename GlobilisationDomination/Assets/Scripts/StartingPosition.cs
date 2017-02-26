@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 
@@ -73,7 +74,6 @@ public class StartingPosition : MonoBehaviour {
 		{
 			startingPositionPanel.gameObject.SetActive (false);
 
-
 			switch (currentSelection)
 			{
 			case 1:
@@ -82,6 +82,13 @@ public class StartingPosition : MonoBehaviour {
 				//make south america more expensive
 				//more expensive to go to other countries
 				//35 max limit for factories
+				GameObject.Find ("africaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
+				GameObject.Find ("asiaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
+				GameObject.Find ("australiaPoly").GetComponent<CountryController> ().purchaseCost = 600000;
+				GameObject.Find ("europePoly").GetComponent<CountryController> ().purchaseCost = 400000;
+				GameObject.Find ("sAmericaPoly").GetComponent<CountryController> ().purchaseCost = 300000;
+				GameObject.Find ("ukPoly").GetComponent<CountryController> ().purchaseCost = 750000;
+
 				break;
 			case 2:
 				GameObject.Find("sAmericaPoly").GetComponent<CountryController>().isLocked = false; 
@@ -89,6 +96,12 @@ public class StartingPosition : MonoBehaviour {
 				//make north america less expensive
 				//higher natural factory limit
 				//45 max limit for factories
+				GameObject.Find ("africaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
+				GameObject.Find ("asiaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
+				GameObject.Find ("australiaPoly").GetComponent<CountryController> ().purchaseCost = 600000;
+				GameObject.Find ("europePoly").GetComponent<CountryController> ().purchaseCost = 400000;
+				GameObject.Find ("nAmericaPoly").GetComponent<CountryController> ().purchaseCost = 1000000;
+				GameObject.Find ("ukPoly").GetComponent<CountryController> ().purchaseCost = 750000;
 				break;
 			case 3:
 				GameObject.Find ("ukPoly").GetComponent<CountryController> ().isLocked = false; 
@@ -96,31 +109,62 @@ public class StartingPosition : MonoBehaviour {
 				//make eu more expensive
 				//slightly more expensive to move to other countries
 				//5 max limit for factories
+				GameObject.Find ("africaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
+				GameObject.Find ("asiaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
+				GameObject.Find ("australiaPoly").GetComponent<CountryController> ().purchaseCost = 600000;
+				GameObject.Find ("europePoly").GetComponent<CountryController> ().purchaseCost = 400000;
+				GameObject.Find ("nAmericaPoly").GetComponent<CountryController> ().purchaseCost = 1000000;
+				GameObject.Find ("sAmericaPoly").GetComponent<CountryController> ().purchaseCost = 300000;
 				break;
 			case 4:
 				GameObject.Find("europePoly").GetComponent<CountryController>().isLocked = false;
 				money.moneyValue = 400000;
 				//30 max limit for factories
+				GameObject.Find ("africaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
+				GameObject.Find ("asiaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
+				GameObject.Find ("australiaPoly").GetComponent<CountryController> ().purchaseCost = 600000;
+				GameObject.Find ("ukPoly").GetComponent<CountryController> ().purchaseCost = 750000;
+				GameObject.Find ("nAmericaPoly").GetComponent<CountryController> ().purchaseCost = 1000000;
+				GameObject.Find ("sAmericaPoly").GetComponent<CountryController> ().purchaseCost = 300000;
 				break;
 			case 5:
 				GameObject.Find("asiaPoly").GetComponent<CountryController>().isLocked = false;
 				money.moneyValue = 200000;
 				//highest natural factory limit
 				//110 max limit for factories
+				GameObject.Find ("africaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
+				GameObject.Find ("europePoly").GetComponent<CountryController> ().purchaseCost = 400000;
+				GameObject.Find ("australiaPoly").GetComponent<CountryController> ().purchaseCost = 600000;
+				GameObject.Find ("ukPoly").GetComponent<CountryController> ().purchaseCost = 750000;
+				GameObject.Find ("nAmericaPoly").GetComponent<CountryController> ().purchaseCost = 1000000;
+				GameObject.Find ("sAmericaPoly").GetComponent<CountryController> ().purchaseCost = 300000;
 				break;
 			case 6: 
 				GameObject.Find("australiaPoly").GetComponent<CountryController>().isLocked = false; 
 				money.moneyValue = 600000;
 				//little less expensive than uk to move to other countries
 				//20 max limit for factories
+				GameObject.Find ("africaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
+				GameObject.Find ("europePoly").GetComponent<CountryController> ().purchaseCost = 400000;
+				GameObject.Find ("asiaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
+				GameObject.Find ("ukPoly").GetComponent<CountryController> ().purchaseCost = 750000;
+				GameObject.Find ("nAmericaPoly").GetComponent<CountryController> ().purchaseCost = 1000000;
+				GameObject.Find ("sAmericaPoly").GetComponent<CountryController> ().purchaseCost = 300000;
 				break;
 			case 7:
 				GameObject.Find("africaPoly").GetComponent<CountryController>().isLocked = false; 
 				money.moneyValue = 200000;
 				//cheaper upgrade cost
 				//75 max limit for factories
+				GameObject.Find ("australiaPoly").GetComponent<CountryController> ().purchaseCost = 600000;
+				GameObject.Find ("europePoly").GetComponent<CountryController> ().purchaseCost = 400000;
+				GameObject.Find ("asiaPoly").GetComponent<CountryController> ().purchaseCost = 200000;
+				GameObject.Find ("ukPoly").GetComponent<CountryController> ().purchaseCost = 750000;
+				GameObject.Find ("nAmericaPoly").GetComponent<CountryController> ().purchaseCost = 1000000;
+				GameObject.Find ("sAmericaPoly").GetComponent<CountryController> ().purchaseCost = 300000;
 				break; 
 			default:
+				Debug.Log ("You done fucked up");
 				break; 
 			}
 
