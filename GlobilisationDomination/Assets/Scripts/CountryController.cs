@@ -50,9 +50,7 @@ public class CountryController : MonoBehaviour {
 		Debug.Log (Shader.PropertyToID ("_OutlineColor"));
 
 		insufficientFunds = GameObject.Find ("Insufficient Funds");
-		Button FactoryLimitUpgrade = GameObject.Find ("upgradeButton").GetComponent<Button>();
-		FactoryLimitUpgrade.onClick.AddListener (UpgradeFactoryLimitInCountry);
-		CountryFactoryLimitText.text = ("Factory Limit: " + FactoryLimit.ToString ()); 
+		//CountryFactoryLimitText.text = ("No. of Factories: " + NoOfFactories.ToString() + FactoryLimit.ToString ()); 
 
 	}
 
@@ -70,22 +68,22 @@ public class CountryController : MonoBehaviour {
 
 	void RegionNameText()
 	{
-		
-		if (selectedCountry.name == "africaPoly")
-			selectedCountryText.text = ("Region: Africa");
-		else if (selectedCountry.name == "asiaPoly")
-			selectedCountryText.text = ("Region: Asia");
-		else if (selectedCountry.name == "australiaPoly")
-			selectedCountryText.text = ("Region: Australia");
-		else if (selectedCountry.name == "europePoly")
-			selectedCountryText.text = ("Region: Europe");
-		else if (selectedCountry.name == "nAmericaPoly")
-			selectedCountryText.text = ("Region: North America");
-		else if (selectedCountry.name == "sAmericaPoly")
-			selectedCountryText.text = ("Region: South America");
-		else if (selectedCountry.name == "ukPoly")
-			selectedCountryText.text = ("Region: United Kingdom");
-
+		if (selectedCountry != null) {
+			if (selectedCountry.name == "africaPoly")
+				selectedCountryText.text = ("Region: Africa");
+			else if (selectedCountry.name == "asiaPoly")
+				selectedCountryText.text = ("Region: Asia");
+			else if (selectedCountry.name == "australiaPoly")
+				selectedCountryText.text = ("Region: Australia");
+			else if (selectedCountry.name == "europePoly")
+				selectedCountryText.text = ("Region: Europe");
+			else if (selectedCountry.name == "nAmericaPoly")
+				selectedCountryText.text = ("Region: North America");
+			else if (selectedCountry.name == "sAmericaPoly")
+				selectedCountryText.text = ("Region: South America");
+			else if (selectedCountry.name == "ukPoly")
+				selectedCountryText.text = ("Region: United Kingdom");
+		}
 	}
 
 	void FixedUpdate()
