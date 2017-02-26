@@ -7,7 +7,7 @@ public class Factory : MonoBehaviour {
 
 	private float baseVal = 100.0f; //Will need balancing
 
-	public float expEpsilon = 0.01f;
+	public float expEpsilon = 1f;
 	public int factoryLevel = 1;
 
 	public float upgradeCost = 1000;
