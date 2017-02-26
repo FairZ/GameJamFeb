@@ -190,8 +190,8 @@ public class CountryController : MonoBehaviour {
 			money.moneyValue -= selectedCountry.GetComponent<CountryController>().ManagingDirectorCost;
 			selectedCountry.GetComponent<CountryController>().ManagingDirector = true;
 		} 
-		else if (money.moneyValue <= selectedCountry.GetComponent<CountryController>().ManagingDirectorCost)
-			GameObject.Find ("Insufficient Funds").SetActive (false);
+	 	else if (money.moneyValue <= selectedCountry.GetComponent<CountryController>().ManagingDirectorCost)
+			insufficientFunds.SetActive (false);
 	}
 
 }
