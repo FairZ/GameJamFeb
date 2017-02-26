@@ -22,6 +22,7 @@ public class CountryController : MonoBehaviour {
 	public static GameObject selectedCountry;
 
 	public Text selectedCountryText;
+	public Text countryUnlockNameText;
 	public Text CountryFactoryLimitText;
 	private Button FactoryLimitUpgrade;
 
@@ -50,7 +51,7 @@ public class CountryController : MonoBehaviour {
 		Debug.Log (Shader.PropertyToID ("_OutlineColor"));
 
 		insufficientFunds = GameObject.Find ("Insufficient Funds");
-		//CountryFactoryLimitText.text = ("No. of Factories: " + NoOfFactories.ToString() + FactoryLimit.ToString ()); 
+		CountryFactoryLimitText.text = ("No. of Factories: " + NoOfFactories.ToString() + "/" + FactoryLimit.ToString ()); 
 
 	}
 
@@ -97,8 +98,10 @@ public class CountryController : MonoBehaviour {
 
 				if(Physics.Raycast(ray, out hit))
 				{
-					if (hit.collider.gameObject == selectedCountry)
+					if (hit.collider.gameObject == selectedCountry) {
 						AddFactory (hit.point);
+						CountryFactoryLimitText.text = ("No. of Factories: " + NoOfFactories.ToString () + "/" + FactoryLimit.ToString ()); 
+					}
 				}
 
 			}
@@ -115,19 +118,24 @@ public class CountryController : MonoBehaviour {
 	{
 		if (this.gameObject == selectedCountry)
 		{
-			this.FactoryLimit++;
-			CountryFactoryLimitText.text = ("Factory Limit: " + FactoryLimit.ToString ());
+			FactoryLimit++;
+			CountryFactoryLimitText.text = ("No. of Factories: " + NoOfFactories.ToString () + "/" + FactoryLimit.ToString ());
 
 		}
 	}
 
 	public void SwitchAddingState()
 	{
-		if ((money.moneyValue >= selectedCountry.GetComponent<CountryController> ().FactoryCost) && (NoOfFactories < FactoryLimit)) {
+
+		if ((money.moneyValue >= selectedCountry.GetComponent<CountryController> ().FactoryCost) && (selectedCountry.GetComponent<CountryController> ().NoOfFactories < selectedCountry.GetComponent<CountryController> ().FactoryLimit))
+		{
 			selectedCountry.GetComponent<CountryController> ().isAddingFactory = !isAddingFactory;
-		} else if (NoOfFactories < FactoryLimit) {
+		} 
+		else if (selectedCountry.GetComponent<CountryController> ().NoOfFactories < selectedCountry.GetComponent<CountryController> ().FactoryLimit)
+		{
 			insufficientFunds.SetActive (true);
 		}
+
 	}
 
 	void AddFactory(Vector3 _loc)
