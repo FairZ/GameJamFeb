@@ -39,6 +39,7 @@ public class CountryController : MonoBehaviour {
 	public bool isLocked = true;
 
 	public GameObject insufficientFunds;
+	public GameObject max;
 
 	void Start()
 	{
@@ -134,14 +135,12 @@ public class CountryController : MonoBehaviour {
 	public void SwitchAddingState()
 	{
 
-		if ((money.moneyValue >= selectedCountry.GetComponent<CountryController> ().FactoryCost) && (selectedCountry.GetComponent<CountryController> ().NoOfFactories < selectedCountry.GetComponent<CountryController> ().FactoryLimit))
-		{
+		if ((money.moneyValue >= selectedCountry.GetComponent<CountryController> ().FactoryCost) && (selectedCountry.GetComponent<CountryController> ().NoOfFactories < selectedCountry.GetComponent<CountryController> ().FactoryLimit)) {
 			selectedCountry.GetComponent<CountryController> ().isAddingFactory = !isAddingFactory;
-		} 
-		else if (selectedCountry.GetComponent<CountryController> ().NoOfFactories < selectedCountry.GetComponent<CountryController> ().FactoryLimit)
-		{
+		} else if (selectedCountry.GetComponent<CountryController> ().NoOfFactories < selectedCountry.GetComponent<CountryController> ().FactoryLimit) {
 			insufficientFunds.SetActive (true);
-		}
+		} else
+			max.SetActive (true);
 
 	}
 

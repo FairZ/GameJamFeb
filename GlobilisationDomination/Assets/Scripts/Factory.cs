@@ -7,7 +7,7 @@ public class Factory : MonoBehaviour {
 
 	private float baseVal = 100.0f; //Will need balancing
 
-	public float expEpsilon = 1f;
+	public float expEpsilon = 2f;
 	public int factoryLevel = 1;
 
 	public float upgradeCost = 1000;
@@ -35,7 +35,7 @@ public class Factory : MonoBehaviour {
 		if (moneyTimer <= 0.0f) {
 			float moneyVal = 0.0f;
 
-			moneyVal = baseVal * _cMult * (Mathf.Pow (expEpsilon, factoryLevel / 10.0f)); //Will need balancing
+			moneyVal = baseVal * _cMult * (Mathf.Pow (expEpsilon, factoryLevel)) * 1000; //Will need balancing
 
 			if (_isManaged) {
 				//Add money directly to player

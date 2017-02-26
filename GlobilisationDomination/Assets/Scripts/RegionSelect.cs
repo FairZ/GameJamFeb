@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class RegionSelect : MonoBehaviour {
 
@@ -7,6 +8,14 @@ public class RegionSelect : MonoBehaviour {
 	public GameObject countryUnlock;
 	public GameObject insufficientFunds;
 	public GameObject factoryUpgrade;
+	public GameObject max;
+
+	public Text regionSelectText;
+	public Text factorySelectText;
+
+	public Text fCost;
+	public Text hCost;
+	public Text mdCost;
 
 	void FixedUpdate(){
 		if (Input.GetMouseButtonDown(0) && !Input.GetKey(KeyCode.LeftControl))
@@ -26,15 +35,25 @@ public class RegionSelect : MonoBehaviour {
 					CountryController.selectedCountry = hit.collider.gameObject; 
 					CountryController cc = CountryController.selectedCountry.GetComponent<CountryController> ();
 					cc.SetOutlineCol (new Vector4 (107, 130, 103, 255));
+
+					regionSelectText.text = "Initial Factory Price: $" + cc.FactoryCost + "\n\nInitial Factory limit: " + cc.FactoryLimit;
+					countryUnlock.GetComponentInChildren<Button> ().GetComponentInChildren<Text> ().text = "$" + cc.purchaseCost;
+
 					if (!CountryController.selectedCountry.GetComponent<CountryController> ().isLocked) {
 						
 						countryInfo.SetActive (true);
 						countryUnlock.SetActive (false);
 						factoryUpgrade.SetActive (false);
+						//Write costs
+						fCost.text = "$" + cc.FactoryCost;
+						hCost.text = "$" + cc.FactoryLimitUpgradeCost;
+						mdCost.text = "$" + cc.ManagingDirectorCost;
 					} else {
 						countryInfo.SetActive (false);
 						countryUnlock.SetActive (true);
 						factoryUpgrade.SetActive (false);
+
+
 					}
 				} else {
 					if (CountryController.selectedCountry != null) 
@@ -45,6 +64,7 @@ public class RegionSelect : MonoBehaviour {
 					countryInfo.SetActive (false);
 					countryUnlock.SetActive (false);
 					factoryUpgrade.SetActive (false);
+
 				}
 
 				if (hit.collider.tag == ("Factory")) {
@@ -52,6 +72,9 @@ public class RegionSelect : MonoBehaviour {
 					countryUnlock.SetActive (false);
 					factoryUpgrade.SetActive (true);
 					Factory.selectedFactory = hit.collider.gameObject.GetComponent<Factory> ();
+
+					factorySelectText.text = "Factory Level: " + Factory.selectedFactory.factoryLevel;
+					factoryUpgrade.GetComponentInChildren<Button> ().GetComponentInChildren<Text> ().text = "$" + Factory.selectedFactory.upgradeCost;
 				}
 
 				if (hit.collider.tag == ("pickup"))
@@ -84,12 +107,16 @@ public class RegionSelect : MonoBehaviour {
 			money.moneyValue -= c.FactoryLimitUpgradeCost;
 			countryInfo.SetActive (true);
 
-			c.FactoryLimitUpgradeCost += (int)Mathf.Pow (1f, c.maxFactoryLimit/10.0f);
+			c.FactoryLimitUpgradeCost += (c.FactoryLimitUpgradeCost * c.FactoryLimitUpgradeCost) / 75000;
 		}
 		else if (c.FactoryLimit < c.maxFactoryLimit)
 		{
 			insufficientFunds.SetActive (true);
 		}
+		//Write costs
+		fCost.text = "$" + c.FactoryCost;
+		hCost.text = "$" + c.FactoryLimitUpgradeCost;
+		mdCost.text = "$" + c.ManagingDirectorCost;
 	}
 
 	public void UpgradeSelectedFactory()
@@ -98,11 +125,23 @@ public class RegionSelect : MonoBehaviour {
 		{
 			money.moneyValue -= Factory.selectedFactory.upgradeCost;
 			Factory.selectedFactory.factoryLevel++;
-			Factory.selectedFactory.upgradeCost += (int)Mathf.Pow (Factory.selectedFactory.expEpsilon, Factory.selectedFactory.factoryLevel); //Will need to balance
+			Factory.selectedFactory.upgradeCost += Factory.selectedFactory.factoryLevel * (Factory.selectedFactory.factoryLevel) * 100; //Will need to balance
 		}
 		else if(money.moneyValue <= Factory.selectedFactory.upgradeCost)
 		{
-			GameObject.Find ("Insufficient Funds").SetActive (true);
+			insufficientFunds.SetActive (true);
 		}
+
+		factorySelectText.text = "Factory Level: " + Factory.selectedFactory.factoryLevel;
+		factoryUpgrade.GetComponentInChildren<Button> ().GetComponentInChildren<Text> ().text = "$" + Factory.selectedFactory.upgradeCost;
+	}
+
+	public void UpdateUI()
+	{
+		CountryController c = CountryController.selectedCountry.GetComponent<CountryController> ();
+		//Write costs
+		fCost.text = "$" + c.FactoryCost;
+		hCost.text = "$" + c.FactoryLimitUpgradeCost;
+		mdCost.text = "$" + c.ManagingDirectorCost;
 	}
 }
