@@ -50,6 +50,7 @@ public class RegionSelect : MonoBehaviour {
 					countryInfo.SetActive (false);
 					countryUnlock.SetActive (false);
 					factoryUpgrade.SetActive (true);
+					Factory.selectedFactory = hit.collider.gameObject.GetComponent<Factory> ();
 				}
 
 				if (hit.collider.tag == ("pickup"))
@@ -63,12 +64,27 @@ public class RegionSelect : MonoBehaviour {
 
 	public void UnlockRegion()
 	{
-		if (money.moneyValue >= CountryController.selectedCountry.GetComponent<CountryController> ().purchaseCost) {
-			CountryController.selectedCountry.GetComponent<CountryController> ().isLocked = false;
-			money.moneyValue -= CountryController.selectedCountry.GetComponent<CountryController> ().purchaseCost;
+		CountryController c = CountryController.selectedCountry.GetComponent<CountryController> ();
+		if (money.moneyValue >= c.purchaseCost) {
+			c.isLocked = false;
+			money.moneyValue -= c.purchaseCost;
 			countryUnlock.SetActive (false);
 			countryInfo.SetActive (true);
 		} else {
+			insufficientFunds.SetActive (true);
+		}
+	}
+
+	public void UpgradeFactoryLimit() 
+	{
+		CountryController c = CountryController.selectedCountry.GetComponent<CountryController> ();
+		if ((money.moneyValue >= c.FactoryLimitUpgradeCost) && (c.FactoryLimit < c.maxFactoryLimit)) {
+			c.FactoryLimit++;
+			money.moneyValue -= c.purchaseCost;
+			countryInfo.SetActive (true);
+		}
+		else if (c.FactoryLimit < c.maxFactoryLimit)
+		{
 			insufficientFunds.SetActive (true);
 		}
 	}
