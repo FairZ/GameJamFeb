@@ -6,6 +6,7 @@ public class RegionSelect : MonoBehaviour {
 	public GameObject countryInfo;
 	public GameObject countryUnlock;
 	public GameObject insufficientFunds;
+	public GameObject factoryUpgrade;
 
 	void FixedUpdate(){
 		if (Input.GetMouseButtonDown(0) && !Input.GetKey(KeyCode.LeftControl))
@@ -28,11 +29,12 @@ public class RegionSelect : MonoBehaviour {
 					if (!CountryController.selectedCountry.GetComponent<CountryController> ().isLocked) {
 						countryInfo.SetActive (true);
 						countryUnlock.SetActive (false);
+						factoryUpgrade.SetActive (false);
 					} else {
 						countryInfo.SetActive (false);
 						countryUnlock.SetActive (true);
+						factoryUpgrade.SetActive (false);
 					}
-					Debug.Log (CountryController.selectedCountry);
 				} else {
 					if (CountryController.selectedCountry != null) 
 					{
@@ -41,6 +43,13 @@ public class RegionSelect : MonoBehaviour {
 					}
 					countryInfo.SetActive (false);
 					countryUnlock.SetActive (false);
+					factoryUpgrade.SetActive (false);
+				}
+
+				if (hit.collider.tag == ("Factory")) {
+					countryInfo.SetActive (false);
+					countryUnlock.SetActive (false);
+					factoryUpgrade.SetActive (true);
 				}
 
 				if (hit.collider.tag == ("pickup"))
