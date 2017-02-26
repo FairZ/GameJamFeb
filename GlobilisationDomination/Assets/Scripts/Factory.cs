@@ -3,10 +3,14 @@ using System.Collections;
 
 public class Factory : MonoBehaviour {
 
+	public static Factory selectedFactory;
+
 	private float baseVal = 100.0f; //Will need balancing
 
 	private float expEpsilon = 0.01f;
 	public int factoryLevel = 1;
+
+	public float upgradeCost = 1000;
 
 	private const float TIMER_MAX = 20.0f; //Will need balancing
 	private float moneyTimer = TIMER_MAX;
@@ -69,4 +73,17 @@ public class Factory : MonoBehaviour {
 		factoryLevel++;
 	}
 
+	public void UpgradeSelectedFactory()
+	{
+		if(selectedFactory != null && money.moneyValue >= upgradeCost)
+		{
+			money.moneyValue -= upgradeCost;
+			factoryLevel++;
+			upgradeCost += Mathf.Pow (expEpsilon, factoryLevel); //Will need to balance
+		}
+		else if(money.moneyValue <= upgradeCost)
+		{
+			GameObject.Find ("Insufficient Funds").SetActive (true);
+		}
+	}
 }
