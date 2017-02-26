@@ -21,6 +21,8 @@ public class CountryController : MonoBehaviour {
 	public static GameObject startingCountry;
 	public static GameObject selectedCountry;
 
+	private CountryController selectedController;
+
 	public Text selectedCountryText;
 	public Text countryUnlockNameText;
 	public Text CountryFactoryLimitText;
@@ -63,6 +65,8 @@ public class CountryController : MonoBehaviour {
 		}
 
 		RegionNameText ();
+		selectedController = selectedCountry.GetComponent<CountryController> ();
+		CountryFactoryLimitText.text = ("No. of Factories: " + selectedController.NoOfFactories.ToString() + "/" + selectedController.FactoryLimit.ToString ());
 		//selectedCountryText.text = ("Region: " + selectedCountry.name.ToString ());
 
 	}
