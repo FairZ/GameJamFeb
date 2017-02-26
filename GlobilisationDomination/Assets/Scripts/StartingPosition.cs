@@ -21,49 +21,49 @@ public class StartingPosition : MonoBehaviour {
 	public void NorthAmerica()
 	{
 		currentSelection = 1;
-		regionInformation.text = ("North america info");
+		regionInformation.text = ("\tNorth america\n\n Start with a small loan of a million dollars\n\n Shame about the wall though, South America is gonna be expensive");
 
 	}
 
 	public void SouthAmerica()
 	{
 		currentSelection = 2;
-		regionInformation.text = ("South america info");
+		regionInformation.text = ("\tSouth America\n\n Start with less money\n\n At least you managed to get that tunnel under the wall built");
 
 	}
 
 	public void UnitedKingdom()
 	{
 		currentSelection = 3;
-		regionInformation.text = ("uk info");
+		regionInformation.text = ("\tUnited Kingdom\n\n Start with a decent amount\n\n Europe is more expensive; you know what you did.");
 
 	}
 
 	public void Europe()
 	{
 		currentSelection = 4;
-		regionInformation.text = ("europe info");
+		regionInformation.text = ("\tEurope\n\n Start with a fair amount\n\n Lots of room for factories though"); //Is this right!?
 
 	}
 
 	public void Asia()
 	{
 		currentSelection = 5;
-		regionInformation.text = ("asia info");
+		regionInformation.text = ("\tAsia\n\n Small amount to start with\n\n Super cheap to make room for factories though");
 
 	}
 
 	public void Australia()
 	{
 		currentSelection = 6;
-		regionInformation.text = ("australia info");
+		regionInformation.text = ("\tAustralia\n\n Starts with a decent amount\n\n More expensive to move between regions");
 
 	}
 
 	public void Africa()
 	{
 		currentSelection = 7;
-		regionInformation.text = ("africa info");
+		regionInformation.text = ("\tAfrica\n\n Start with a small amount\n\n Cheap to build factories, but produce less");
 
 	}
 
