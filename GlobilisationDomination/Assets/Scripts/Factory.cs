@@ -57,8 +57,6 @@ public class Factory : MonoBehaviour {
 				aRef.pitch += Random.Range (-0.15f, 0.15f);
 				aRef.PlayOneShot (moneybagSound);
 
-				if (aRef.isPlaying)
-					Debug.Log ("Sound");
 			}
 			moneyTimer = TIMER_MAX;
 		}
