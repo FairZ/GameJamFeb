@@ -89,4 +89,18 @@ public class RegionSelect : MonoBehaviour {
 			insufficientFunds.SetActive (true);
 		}
 	}
+
+	public void UpgradeSelectedFactory()
+	{
+		if(Factory.selectedFactory != null && money.moneyValue >= Factory.selectedFactory.upgradeCost)
+		{
+			money.moneyValue -= Factory.selectedFactory.upgradeCost;
+			Factory.selectedFactory.factoryLevel++;
+			Factory.selectedFactory.upgradeCost += Mathf.Pow (Factory.selectedFactory.expEpsilon, Factory.selectedFactory.factoryLevel); //Will need to balance
+		}
+		else if(money.moneyValue <= Factory.selectedFactory.upgradeCost)
+		{
+			GameObject.Find ("Insufficient Funds").SetActive (true);
+		}
+	}
 }
